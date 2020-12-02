@@ -11,6 +11,26 @@ i.nav {
   text-justify: inter-word;
 }
 
+.code {
+	width: 23%;
+	float: left;
+	margin-left:2%;
+}
+.next {
+	width: 2%;
+	height: 100%;
+	float: left;
+}
+
+i.next {
+	font-size: 20px;
+	margin-top:50%;
+}
+
+pre {
+	font-family: monospace;
+	font-size: 12px;
+}
 /*
 
 Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>

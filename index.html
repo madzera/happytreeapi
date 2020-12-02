@@ -22,7 +22,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-	<a href="./javadoc/index.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-cogs"></i> A API</a>
+	<a href="./javadoc/index.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-cogs"></i> API</a>
 	<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
     <a href="https://github.com/Miuey/happytree" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-github-square"></i> GitHub</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-question-circle"></i> FAQ</a>
@@ -86,10 +86,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   </div>
 </div>
 
-<div class="w3-container w3-black w3-opacity w3-padding-64">
-    <div class="w3-content">
-	<pre style="float:left; height:400px; overflow-y:scroll">
-	<code class="java">
+<div class="w3-container w3-black w3-opacity ">
+	<h2 class="w3-center">Quick Start</h2>
+    
+	
+	<div class="code" style="margin-left:1%;">
+		
+		<pre >
+		<code class="java">
+/**
+* 1. Annotate your source object that will be
+* transformed into a node in the tree.
+*/
 @Tree
 public class Node {
 	@Id
@@ -119,22 +127,140 @@ public class Node {
 		this.parentNodeId = parentNodeId;
 	}
 }
-	</code>
-	</pre>
-	<i class="size fa fa-long-arrow-right w3-padding-64 w3-text-blue w3-margin-left" style="float: left;"></i>
+		</code>
+		</pre>
+
+	</div>
 	
-	<pre style="width:237px; float:left;">
-	<code class="java">
-public class Element&lt;Node&gt; {
-	private Object id;
-	private Object parent;
+	
+	
+	<div class="code" style="margin-left:2%;">
+		
+		<pre>
+		<code class="java">
+/**
+* 2. Initialize a session passing through a list
+* of the source objects to be transformed.
+*/
+@Tree
+public class Node {
+	@Id
+	private Integer nodeId;
+	@Parent
+	private Integer parentNodeId;
 			
-	private Collection&lt;Element&lt;Node&gt;&gt; children;
+	private String foo;
+	private String bar;
 	
-	...
+	public Node () {
+	}
+	
+	public Integer getNodeId() {
+		return this.nodeId;
+	}
+	
+	public void setNodeId(Integer nodeId) {
+		this.nodeId = nodeId;
+	}
+	
+	public Integer getParentNodeId() {
+		return this.parentNodeId;
+	}
+	
+	public void setNodeId(Integer parentNodeId) {
+		this.parentNodeId = parentNodeId;
+	}
 }
-	</code>
-	</pre>
+		</code>
+		</pre>
+
+	</div>
+	
+	
+	
+	<div class="code">
+		
+		<pre>
+		<code class="java">
+/**
+* 2. Initialize a session passing through a list
+* of the source objects to be transformed.
+*/
+@Tree
+public class Node {
+	@Id
+	private Integer nodeId;
+	@Parent
+	private Integer parentNodeId;
+			
+	private String foo;
+	private String bar;
+	
+	public Node () {
+	}
+	
+	public Integer getNodeId() {
+		return this.nodeId;
+	}
+	
+	public void setNodeId(Integer nodeId) {
+		this.nodeId = nodeId;
+	}
+	
+	public Integer getParentNodeId() {
+		return this.parentNodeId;
+	}
+	
+	public void setNodeId(Integer parentNodeId) {
+		this.parentNodeId = parentNodeId;
+	}
+}
+		</code>
+		</pre>
+
+	</div>
+	
+	
+	
+	<div class="code">
+		
+		<pre>
+		<code class="java">
+/**
+* 2. Initialize a session passing through a list
+* of the source objects to be transformed.
+*/
+@Tree
+public class Node {
+	@Id
+	private Integer nodeId;
+	@Parent
+	private Integer parentNodeId;
+			
+	private String foo;
+	private String bar;
+	
+	public Node () {
+	}
+	
+	public Integer getNodeId() {
+		return this.nodeId;
+	}
+	
+	public void setNodeId(Integer nodeId) {
+		this.nodeId = nodeId;
+	}
+	
+	public Integer getParentNodeId() {
+		return this.parentNodeId;
+	}
+	
+	public void setNodeId(Integer parentNodeId) {
+		this.parentNodeId = parentNodeId;
+	}
+}
+		</code>
+		</pre>
 
 	</div>
 </div>
