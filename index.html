@@ -57,11 +57,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <p class="w3-text-grey justified">HappyTree is a data structure API designed for the
 	  Java programming language that consists of transforming linear objects into
 	  a tree structure, where each object represents a node in the tree and can
-	  have none or several other objects of the same type. It is similar to the
-	  Document Object Model (DOM) and provides an interface for manipulating
-	  these objects in various trees.</p>
-	  <p class="w3-text-grey justified">In addition to the Transformation Process,
-	  the HappyTree API provides mechanisms to handle these objects within trees,
+	  have none or several other objects of the same type.</p>
+	  <p class="w3-text-grey justified">In addition to that,
+	  the HappyTree API provides interfaces to handle these objects within trees,
 	  as if these objects were tree nodes, all in an easy and intuitive way.</p>
     </div>
 
@@ -95,37 +93,37 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 		<pre >
 		<code class="java">
 /**
-* 1. Annotate your source object that will be
-* transformed into a node in the tree.
-*/
+ * 1. Annotate your source object that will be
+ * transformed into a node in the tree.
+ */
 @Tree
-public class Node {
+public class Menu {
 	@Id
-	private Integer nodeId;
+	private Integer menuId;
+	private String menuLabel;
 	@Parent
-	private Integer parentNodeId;
-			
-	private String foo;
-	private String bar;
-	
-	public Node () {
+	private Integer menuParentId;
+	private String menuDescription;
+
+	public Menu() {
 	}
-	
-	public Integer getNodeId() {
-		return this.nodeId;
+
+	public Integer getMenuId() {
+		return menuId;
 	}
-	
-	public void setNodeId(Integer nodeId) {
-		this.nodeId = nodeId;
+
+	public void setMenuId(Integer menuId) {
+		this.menuId = menuId;
 	}
-	
-	public Integer getParentNodeId() {
-		return this.parentNodeId;
+
+	public Integer getMenuParentId() {
+		return menuParentId;
 	}
-	
-	public void setNodeId(Integer parentNodeId) {
-		this.parentNodeId = parentNodeId;
+
+	public void setMenuParentId(Integer menuParentId) {
+		this.menuParentId = menuParentId;
 	}
+	//Other getters & setters ...
 }
 		</code>
 		</pre>
@@ -139,37 +137,61 @@ public class Node {
 		<pre>
 		<code class="java">
 /**
-* 2. Initialize a session passing through a list
-* of the source objects to be transformed.
-*/
-@Tree
-public class Node {
-	@Id
-	private Integer nodeId;
-	@Parent
-	private Integer parentNodeId;
-			
-	private String foo;
-	private String bar;
+ * 2. Initialize a session passing through a list
+ * of the source objects to be transformed.
+ */
+TreeManager manager = HappyTree.createTreeManager();
+TreeTransaction transaction = manager.getTransaction();
+
+Collection&lt;Menu&gt; menus = myObject.getMenuFromDatabase();
+		
+transaction.initializeSession("MyFirstHappyTree", menus);
+		</code>
+		</pre>
+
+	</div>
 	
-	public Node () {
-	}
 	
-	public Integer getNodeId() {
-		return this.nodeId;
-	}
 	
-	public void setNodeId(Integer nodeId) {
-		this.nodeId = nodeId;
-	}
+	<div class="code">
+		
+		<pre>
+		<code class="java">
+/**
+ * 3. As a result, the list of Menu objects, which had
+ * logical tree behavior, but was structurally arranged
+ * in a linear form, now represents a node in a real tree,
+ * encapsulated in the form of the Element object.
+ */
+public class Element&lt;Menu&gt; {
+	private Object menuId;
+	private Object menuParentId;
 	
-	public Integer getParentNodeId() {
-		return this.parentNodeId;
-	}
+	private Collection&lt;Element&lt;Menu&gt;&gt; menuChildren;
+	private Menu wrappedMenu;
 	
-	public void setNodeId(Integer parentNodeId) {
-		this.parentNodeId = parentNodeId;
-	}
+	//Skeleton methods.
+	public Object getId();
+
+	public void setId(Object menuId);
+
+	public Object getParent();
+
+	public void setParent(Object menuParentId);
+
+	public Collection&lt;Element&lt;Menu&gt;&gt; getChildren();
+
+	public Element&lt;Menu&gt; getElementById(Object menuId);
+	
+	public void addChild(Element&lt;Menu&gt; child);
+
+	public void removeChild(Element&lt;Menu&gt; child);
+
+	public void removeChild(Object menuId);
+
+	public void wrap(Menu menu);
+
+	public Menu unwrap();
 }
 		</code>
 		</pre>
@@ -183,82 +205,41 @@ public class Node {
 		<pre>
 		<code class="java">
 /**
-* 2. Initialize a session passing through a list
-* of the source objects to be transformed.
-*/
-@Tree
-public class Node {
-	@Id
-	private Integer nodeId;
-	@Parent
-	private Integer parentNodeId;
-			
-	private String foo;
-	private String bar;
-	
-	public Node () {
-	}
-	
-	public Integer getNodeId() {
-		return this.nodeId;
-	}
-	
-	public void setNodeId(Integer nodeId) {
-		this.nodeId = nodeId;
-	}
-	
-	public Integer getParentNodeId() {
-		return this.parentNodeId;
-	}
-	
-	public void setNodeId(Integer parentNodeId) {
-		this.parentNodeId = parentNodeId;
-	}
-}
-		</code>
-		</pre>
-
-	</div>
-	
-	
-	
-	<div class="code">
+ * 4. With the elements already generated and the
+ * tree built, it is now possible to freely handle
+ * each element within the tree.
+ */
+transaction.initializeSession("MyFirstHappyTree", menus);
 		
-		<pre>
-		<code class="java">
-/**
-* 2. Initialize a session passing through a list
-* of the source objects to be transformed.
-*/
-@Tree
-public class Node {
-	@Id
-	private Integer nodeId;
-	@Parent
-	private Integer parentNodeId;
-			
-	private String foo;
-	private String bar;
-	
-	public Node () {
-	}
-	
-	public Integer getNodeId() {
-		return this.nodeId;
-	}
-	
-	public void setNodeId(Integer nodeId) {
-		this.nodeId = nodeId;
-	}
-	
-	public Integer getParentNodeId() {
-		return this.parentNodeId;
-	}
-	
-	public void setNodeId(Integer parentNodeId) {
-		this.parentNodeId = parentNodeId;
-	}
-}
+Element&lt;Menu&gt; administration = manager.getElementById(
+		administrationId);
+Element&lt;Menu&gt; accessControl = manager.getElementById(
+		accessControlId);
+
+/*
+ * Access Control menu and its children now will
+ * be moved for Administration menu.
+ */
+manager.cut(accessControl, administration);
+		
+Menu securityMenu = new Menu();
+securityMenu.setMenuId(securityId);
+securityMenu.setMenuParentId(administrationId);
+		
+Element&lt;Menu&gt; security = manager.createElement(securityId,
+		administrationId, securityMenu);
+
+//New inserted element in the tree.		
+manager.persistElement(security);
+		
+administration = manager.getElementById(administrationId);
+administration.removeChild(configurationId);
+
+/*
+ * Updating the Administration menu by removing
+ * a child.
+ */
+manager.updateElement(administration);
 		</code>
 		</pre>
 
