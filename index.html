@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>HappyTree API</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script>
+
+<head>
+	<title>HappyTree API</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="happytree_icon.png">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script>
+</head>
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
@@ -23,7 +27,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-black">v1.0.0</a>
 	<a href="./javadoc/index.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-cogs"></i> API</a>
-	<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
+	<a href="https://github.com/Miuey/happytree/releases/download/v1.0.0/happytree-1.0.0.jar" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
     <a href="https://github.com/Miuey/happytree" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-github-square"></i> GitHub</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-question-circle"></i> FAQ</a>
 	<a class="w3-bar-item w3-button w3-padding-large w3-white w3-right">Donate</a>
@@ -31,17 +35,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-cogs"></i> A API</a>
-	<a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-download"></i> Download</a>
-	<a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-github-square"></i> GitHub</a>
+    <a href="./javadoc/index.html" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-cogs"></i> A API</a>
+	<a href="https://github.com/Miuey/happytree/releases/download/v1.0.0/happytree-1.0.0.jar" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-download"></i> Download</a>
+	<a href="https://github.com/Miuey/happytree" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-github-square"></i> GitHub</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-question-circle"></i> FAQ</a>
   </div>
 </div>
 
 <!-- Header -->
 <header class="w3-container w3-blue w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">HAPPYTREE API</h1>
-  <p class="w3-xlarge">Handle your tree of Java Model Objects.</p>
+  <img alt="HappyTree API" src="happytree_logo.png" />
+  <!--<h1 class="w3-margin w3-jumbo">HAPPYTREE API</h1>-->
+  <p class="w3-xlarge">Plant your tree of Java Objects.</p>
   <a href="happytree-1.0.0.pdf">
   <button class="w3-button w3-blue-grey w3-padding-large w3-large w3-margin-top">Get Started</button>
   </a>
@@ -53,12 +58,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>HappyTree API</h1>
-      <h5 class="w3-padding-32 justified">"Java Model Objects (POJO) API to transform linear objects into real trees. Handle these objects as if they were nodes of a tree."</h5>
+      <h5 class="w3-padding-32 justified">"Java Object Model API to transform linear objects with tree behavior into real trees. Handle these objects as if they were nodes of a tree."</h5>
 
       <p class="w3-text-grey justified">HappyTree is a data structure API designed for the
 	  Java programming language that consists of transforming linear objects into
 	  a tree structure, where each object represents a node in the tree and can
 	  have none or several other objects of the same type.</p>
+	  <p class="w3-text-grey justified">Consists of an extremely simple API, focused on the Java Object Model layer of a Java project architecture.</p>
 	  <p class="w3-text-grey justified">In addition to that,
 	  the HappyTree API provides interfaces to handle these objects within trees,
 	  as if these objects were tree nodes, all in an easy and intuitive way.</p>
@@ -78,8 +84,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     </div>
 
     <div class="w3-twothird justified">
-      <h3 class="w3-padding-16"><i class="fa fa-check w3-text-green"></i> Handle Java Model Objects as it is nodes within trees, in order to perform operations such as copying, cutting, removing, creating, persisting or updating;</h3>
-	  <h3 class="w3-padding-16"><i class="fa fa-check w3-text-green"></i> Transform linear data structures of Java Model Objects into trees;</h3>
+      <h3 class="w3-padding-16"><i class="fa fa-check w3-text-green"></i> Handle Java Objects as if they were nodes within trees, in order to perform operations such as copying, cutting, removing, creating, persisting or updating;</h3>
+	  <h3 class="w3-padding-16"><i class="fa fa-check w3-text-green"></i> Transform linear data structures of Java Objects into trees;</h3>
 	  <h3 class="w3-padding-16"><i class="fa fa-check w3-text-green"></i> Create and manage multiple trees of these objects.</h3>
     </div>
   </div>
