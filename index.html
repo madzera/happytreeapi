@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="download_popup.css">
 	<link rel="icon" href="happytree_icon.png">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script>
 </head>
@@ -27,7 +28,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-black">v1.0.0</a>
 	<a href="./javadoc/index.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-cogs"></i> API</a>
-	<a href="https://github.com/madzera/happytree/releases/download/v1.0.0/happytree-1.0.0.jar" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
+	<a href="#" onclick="document.getElementById('download_popup').style.display='block'" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
     <a href="https://github.com/madzera/happytree" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-github-square"></i> GitHub</a>
 	<a class="w3-bar-item w3-button w3-padding-large w3-white w3-right">Donate</a>
   </div>
@@ -251,11 +252,43 @@ manager.updateElement(administration);
 	</div>
 </div>
 
+
+<div id="download_popup" class="modal">
+  <span onclick="document.getElementById('download_popup').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+    <div class="container">
+		<h1>Delete Account</h1>
+		<p>Are you sure you want to delete your account?</p>
+		
+		<div class="avatar mvn-avatar"></div>
+		<div class="avatar mvn-gradle"></div>
+		<div class="avatar mvn-kotlin"></div>
+		<div class="avatar mvn-scala"></div>
+		<div class="avatar mvn-ivy"></div>
+		<div class="avatar mvn-groovy"></div>
+		<div class="avatar mvn-leiningen"></div>
+		<div class="avatar mvn-buildr"></div>
+    </div>
+
+</div>
+
+
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">  
  <p>© Copyright 2020 HappyTree API. All rights reserved.Powered by <a href="https://www.madzera.com" target="_blank">MadZera</a></p>
 </footer>
 
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 <script>
 hljs.initHighlightingOnLoad();
 // Used to toggle the menu on small screens when clicking on the menu button
