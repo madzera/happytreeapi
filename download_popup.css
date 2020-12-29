@@ -21,6 +21,7 @@
 .container {
   padding: 16px;
   text-align: center;
+  opacity: 85%;
 }
 
 /* The Modal (background) */
@@ -50,6 +51,25 @@ hr {
   margin-bottom: 25px;
 }
 
+.download-content {
+	margin: 5px;
+	background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+    padding: 1.25rem;
+    flex: 1 1 auto;
+    flex-direction: column;
+    display: flex;
+	background: #fff;
+    color: rgba(0,0,0,.87);
+	font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.avatar-content {
+	width: 450px;
+	border: 1px solid rgba(10,10,10,.1);
+}
+
 .avatar {
 	background-size: cover;
 	width:40px;
@@ -57,10 +77,38 @@ hr {
 	border-radius: 50%;
 	flex-shrink: 0;
     object-fit: cover;
+	float: left;
 	border: 1px solid rgba(10,10,10,.1);
+	margin-top:3%;
+	margin-left:3%;
+}
+
+.avatar-header {
+	width:160px;
+	height:40px;
+	text-align: center;
+	margin: auto;
+	border-bottom: 1px solid rgba(10,10,10,.1);
+	margin-top:5%;
+}
+
+.avatar-clip {
+	float: right;
+	margin-right: 5%;
+	cursor: pointer;
+}
+
+.command {
+	width: 80%;
+	font-family: monospace;
+	font-size: 12px;
+	overflow: hidden;
+	margin: auto;
+	text-align: left;
 }
 
 .mvn-avatar {
+	
 	background-image:url(https://search.maven.org/assets/images/mvn.png);
 }
 
