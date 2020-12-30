@@ -53,10 +53,10 @@ hr {
 
 .download-content {
 	margin: 5px;
+	width:460px;
 	background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
-    padding: 1.25rem;
     flex: 1 1 auto;
     flex-direction: column;
     display: flex;
@@ -66,7 +66,7 @@ hr {
 }
 
 .avatar-content {
-	width: 450px;
+	width: 460px;
 	border: 1px solid rgba(10,10,10,.1);
 }
 
@@ -105,10 +105,14 @@ hr {
 	overflow: hidden;
 	margin: auto;
 	text-align: left;
+	overflow-x: auto;
 }
 
-.mvn-avatar {
-	
+.jar-avatar {	
+	background-image:url(jar.png);
+}
+
+.mvn-avatar {	
 	background-image:url(https://search.maven.org/assets/images/mvn.png);
 }
 
@@ -138,6 +142,27 @@ hr {
 
 .mvn-buildr {
 	background-image:url(https://search.maven.org/assets/images/buildr.png);
+}
+
+.mvn-bazel {
+	background-image:url(https://search.maven.org/assets/images/bazel.png);
+}
+
+div::-webkit-scrollbar {
+  width: 20px;
+  cursor:pointer;
+}
+
+/* Track */
+div::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+div::-webkit-scrollbar-thumb {
+  background: #87bdd8;
+  border-radius: 10px;
 }
 
 /* The Modal Close Button (x) */

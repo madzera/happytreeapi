@@ -256,17 +256,27 @@ manager.updateElement(administration);
 <div id="download_popup" class="modal">
   <span onclick="document.getElementById('download_popup').style.display='none'" class="close" title="Close Modal">&times;</span>
 
-    <div class="container">
+    <div class="container scrollable">
 		<h1>Import HappyTree API</h1>
 		<p>Choose your favorite way.</p>
 		
 		<div class="download-content">
-		
+			<!-- ------------------------JAR----------------------------->
+			<div class="avatar-content">
+				<div class="avatar jar-avatar"></div>
+				<div class="avatar-header"><a href="https://maven.apache.org/">Simple JAR</a></div>
+				
+				<div class="command" style="text-align:center;">
+					<a href="https://search.maven.org/remotecontent?filepath=com/madzera/happytree/happytree/1.0.0/happytree-1.0.0.jar">happytree-1.0.0.jar</a><br>
+					<a href="https://github.com/madzera/happytree/archive/v1.0.0.zip">Source code (zip)</a><br>
+					<a href="https://github.com/madzera/happytree/archive/v1.0.0.tar.gz">Source code (tar.gz)</a>
+				</div>
+			</div>
 			<!-- ------------------------MAVEN--------------------------->
 			<div class="avatar-content">
 				<div class="avatar mvn-avatar"></div>
 				<div class="avatar-header"><a href="https://maven.apache.org/">Apache Maven</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
 					<code>
@@ -283,7 +293,7 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-gradle"></div>
 				<div class="avatar-header"><a href="https://gradle.org/">Gradle Groovy DSL</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
 					<code>
@@ -296,7 +306,7 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-kotlin"></div>
 				<div class="avatar-header"><a href="https://github.com/gradle/kotlin-dsl-samples">Gradle Kotlin DSL</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
 					<code>
@@ -309,10 +319,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-scala"></div>
 				<div class="avatar-header"><a href="https://www.scala-sbt.org/">Scala SBT</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code style="white-space:nowrap;">
 					libraryDependencies += "com.madzera.happytree" % "happytree" % "1.0.0"
 					</code>
 			
@@ -322,10 +332,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-ivy"></div>
 				<div class="avatar-header"><a href="https://ant.apache.org/ivy/">Apache Ivy</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code style="white-space:nowrap;">
 					&lt;dependency org="com.madzera.happytree" name="happytree" rev="1.0.0" /&gt;
 					</code>
 			
@@ -335,12 +345,16 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-groovy"></div>
 				<div class="avatar-header"><a href="http://groovy-lang.org/grape.html">Groovy Grape</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
 					<code>
 					@Grapes(<br>
-						&nbsp;&nbsp;&nbsp;&nbsp;@Grab(group='com.madzera.happytree', module='happytree', version='1.0.0')<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;@Grab(<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;group='com.madzera.happytree',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;module='happytree',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version='1.0.0'<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;)<br>
 					)
 					</code>
 			
@@ -350,7 +364,7 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-leiningen"></div>
 				<div class="avatar-header"><a href="https://leiningen.org/">Leiningen</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
 					<code>
@@ -363,7 +377,7 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-buildr"></div>
 				<div class="avatar-header"><a href="https://buildr.apache.org/">Apache Buildr</a></div>
-				<div class="avatar-clip"><i class="fa fa-pencil-square-o w3-text-blue"></i></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
 					<code>
@@ -372,7 +386,23 @@ manager.updateElement(administration);
 			
 				</div>
 			</div>
-		
+			<!-- --------------------------BAZEL----------------------------->
+			<div class="avatar-content">
+				<div class="avatar mvn-bazel"></div>
+				<div class="avatar-header"><a href="https://www.bazel.build/">Bazel</a></div>
+				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="command">
+
+					<code style="white-space:nowrap;">
+					maven_jar(<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;name = "happytree",<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;artifact = "com.madzera.happytree:happytree:1.0.0",<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;sha1 = "76761a48bf399f5bbc8e871f067441911749d05c",<br>
+					)
+					</code>
+			
+				</div>
+			</div>
 		</div>
     </div>
 
