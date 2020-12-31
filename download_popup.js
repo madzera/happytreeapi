@@ -14,5 +14,20 @@ function clipboard(code) {
 }
 
 function closeModal() {
-	document.getElementById('download_popup').style.display='none';
+	var element = document.getElementById('download_popup');
+	transition.begin(element, ["opacity 0.9 0 1s"], {
+		onTransitionEnd: function(element, finished) {
+            if (!finished) return;
+            element.style.display = "none";
+        }
+    });
+}
+
+function openModal() {
+	var element = document.getElementById('download_popup');
+    transition.begin(element, ["opacity 0 0.9 1s"], {
+        onBeforeChangeStyle: function(element) {
+            element.style.display = "block";
+        },
+    });
 }

@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="download_popup.css">
 	<link rel="icon" href="happytree_icon.png">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script>
+	<script src="https://github.com/smnh/TransitionJs/blob/master/src/transition.js"></script>
+	<script src="transition.min.js"></script>
 	<script src="download_popup.js"></script>
 </head>
 
@@ -27,17 +29,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-top">
   <div class="w3-bar w3-blue w3-card w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-black">v1.0.0</a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-black" style="cursor:auto;">v1.0.0</a>
 	<a href="./javadoc/index.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-cogs"></i> API</a>
-	<a onclick="document.getElementById('download_popup').style.display='block'" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
+	<a onclick="openModal();" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
     <a href="https://github.com/madzera/happytree" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-github-square"></i> GitHub</a>
 	<a href="https://www.paypal.com/donate?hosted_button_id=F6LU3YEM9CUF4" class="w3-bar-item w3-button w3-padding-large w3-white w3-right">Donate</a>
   </div>
   
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="./javadoc/index.html" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-cogs"></i> A API</a>
-	<a href="https://github.com/madzera/happytree/releases/download/v1.0.0/happytree-1.0.0.jar" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-download"></i> Download</a>
+	<a class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-black" style="cursor:auto;">v1.0.0</a>
+    <a href="./javadoc/index.html" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-cogs"></i> API</a>
+	<a onclick="openModal();" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-download"></i> Download</a>
 	<a href="https://github.com/madzera/happytree" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-github-square"></i> GitHub</a>
 	<a href="https://www.paypal.com/donate?hosted_button_id=F6LU3YEM9CUF4" class="w3-bar-item w3-button w3-padding-large w3-white w3-right">Donate</a>
   </div>
@@ -259,14 +262,13 @@ manager.updateElement(administration);
   <span onclick="closeModal()" class="close" title="Close Download">&times;</span>
 
     <div class="container">
-		<h1>Import HappyTree API</h1>
-		<p>Choose your favorite way.</p>
+		<h3>Import HappyTree API</h3>
 		
 		<div class="download-content">
 			<!-- ------------------------JAR----------------------------->
 			<div class="avatar-content">
 				<div class="avatar jar-avatar"></div>
-				<div class="avatar-header"><a href="https://maven.apache.org/">Simple JAR</a></div>
+				<div class="avatar-header">Simple JAR</div>
 				
 				<div class="command" style="text-align:center;">
 					<a href="https://search.maven.org/remotecontent?filepath=com/madzera/happytree/happytree/1.0.0/happytree-1.0.0.jar">happytree-1.0.0.jar</a><br>
