@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="download_popup.css">
 	<link rel="icon" href="happytree_icon.png">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script>
+	<script src="download_popup.js"></script>
 </head>
 
 <style>
@@ -28,9 +29,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-black">v1.0.0</a>
 	<a href="./javadoc/index.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-cogs"></i> API</a>
-	<a href="#" onclick="document.getElementById('download_popup').style.display='block'" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
+	<a onclick="document.getElementById('download_popup').style.display='block'" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-download"></i> Download</a>
     <a href="https://github.com/madzera/happytree" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="nav fa fa-github-square"></i> GitHub</a>
-	<a class="w3-bar-item w3-button w3-padding-large w3-white w3-right">Donate</a>
+	<a href="https://www.paypal.com/donate?hosted_button_id=F6LU3YEM9CUF4" class="w3-bar-item w3-button w3-padding-large w3-white w3-right">Donate</a>
   </div>
   
   <!-- Navbar on small screens -->
@@ -38,11 +39,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="./javadoc/index.html" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-cogs"></i> A API</a>
 	<a href="https://github.com/madzera/happytree/releases/download/v1.0.0/happytree-1.0.0.jar" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-download"></i> Download</a>
 	<a href="https://github.com/madzera/happytree" class="w3-bar-item w3-button w3-padding-large"><i class="nav fa fa-github-square"></i> GitHub</a>
+	<a href="https://www.paypal.com/donate?hosted_button_id=F6LU3YEM9CUF4" class="w3-bar-item w3-button w3-padding-large w3-white w3-right">Donate</a>
   </div>
 </div>
 
 <!-- Header -->
-<header class="w3-container w3-blue w3-center" style="padding:128px 16px">
+<header class="w3-container w3-blue w3-center" style="padding:128px 16px" onclick="closeModal()">
   <img alt="HappyTree API" src="happytree_logo.png" />
   <!--<h1 class="w3-margin w3-jumbo">HAPPYTREE API</h1>-->
   <p class="w3-xlarge">Plant your tree of Java Objects.</p>
@@ -53,7 +55,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </header>
 
 <!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container">
+<div class="w3-row-padding w3-padding-64 w3-container" onclick="closeModal()">
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>HappyTree API</h1>
@@ -76,7 +78,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Second Grid -->
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" onclick="closeModal()">
   <div class="w3-content">
     <div class="w3-third w3-center">
       <i class="size fa fa-tree w3-padding-64 w3-text-blue w3-margin-right"></i>
@@ -90,7 +92,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   </div>
 </div>
 
-<div class="w3-container w3-black w3-opacity ">
+<div class="w3-container w3-black w3-opacity" onclick="closeModal()">
 	<h2 class="w3-center">Quick Start</h2>
     
 	
@@ -167,7 +169,7 @@ transaction.initializeSession("MyFirstHappyTree", menus);
  * 3. As a result, the list of Menu objects, which had
  * logical tree behavior, but was structurally arranged
  * in a linear form, now represents a node in a real tree,
- * encapsulated in the form of the Element object.
+ * encapsulated in the form of Element object.
  */
 public class Element&lt;Menu&gt; {
 	private Object menuId;
@@ -254,9 +256,9 @@ manager.updateElement(administration);
 
 
 <div id="download_popup" class="modal">
-  <span onclick="document.getElementById('download_popup').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <span onclick="closeModal()" class="close" title="Close Download">&times;</span>
 
-    <div class="container scrollable">
+    <div class="container">
 		<h1>Import HappyTree API</h1>
 		<p>Choose your favorite way.</p>
 		
@@ -276,10 +278,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-avatar"></div>
 				<div class="avatar-header"><a href="https://maven.apache.org/">Apache Maven</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('maven'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code id="maven">
 					&lt;dependency&gt;<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;com.madzera.happytree&lt;/groupId&gt;<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;happytree&lt;/artifactId&gt;<br>
@@ -293,10 +295,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-gradle"></div>
 				<div class="avatar-header"><a href="https://gradle.org/">Gradle Groovy DSL</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('gradle'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code id="gradle">
 					implementation 'com.madzera.happytree:happytree:1.0.0'
 					</code>
 			
@@ -306,10 +308,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-kotlin"></div>
 				<div class="avatar-header"><a href="https://github.com/gradle/kotlin-dsl-samples">Gradle Kotlin DSL</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('kotlin'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code id="kotlin">
 					implementation("com.madzera.happytree:happytree:1.0.0")
 					</code>
 			
@@ -319,10 +321,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-scala"></div>
 				<div class="avatar-header"><a href="https://www.scala-sbt.org/">Scala SBT</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('scala'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code style="white-space:nowrap;">
+					<code id="scala" style="white-space:nowrap;">
 					libraryDependencies += "com.madzera.happytree" % "happytree" % "1.0.0"
 					</code>
 			
@@ -332,10 +334,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-ivy"></div>
 				<div class="avatar-header"><a href="https://ant.apache.org/ivy/">Apache Ivy</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('ivy'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code style="white-space:nowrap;">
+					<code id="ivy" style="white-space:nowrap;">
 					&lt;dependency org="com.madzera.happytree" name="happytree" rev="1.0.0" /&gt;
 					</code>
 			
@@ -345,10 +347,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-groovy"></div>
 				<div class="avatar-header"><a href="http://groovy-lang.org/grape.html">Groovy Grape</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('groovy'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code id="groovy">
 					@Grapes(<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;@Grab(<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;group='com.madzera.happytree',<br>
@@ -364,10 +366,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-leiningen"></div>
 				<div class="avatar-header"><a href="https://leiningen.org/">Leiningen</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('leiningen'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code id="leiningen">
 					[com.madzera.happytree/happytree "1.0.0"]
 					</code>
 			
@@ -377,10 +379,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-buildr"></div>
 				<div class="avatar-header"><a href="https://buildr.apache.org/">Apache Buildr</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('buildr'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code>
+					<code id="buildr">
 					'com.madzera.happytree:happytree:jar:1.0.0'
 					</code>
 			
@@ -390,10 +392,10 @@ manager.updateElement(administration);
 			<div class="avatar-content">
 				<div class="avatar mvn-bazel"></div>
 				<div class="avatar-header"><a href="https://www.bazel.build/">Bazel</a></div>
-				<div class="avatar-clip"><i class="fa fa-files-o w3-text-blue"></i></div>
+				<div class="avatar-clip" onclick="clipboard(document.getElementById('bazel'))"><i class="fa fa-files-o w3-text-blue"></i></div>
 				<div class="command">
 
-					<code style="white-space:nowrap;">
+					<code id="bazel" style="white-space:nowrap;">
 					maven_jar(<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;name = "happytree",<br>
 						&nbsp;&nbsp;&nbsp;&nbsp;artifact = "com.madzera.happytree:happytree:1.0.0",<br>
@@ -410,8 +412,8 @@ manager.updateElement(administration);
 
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
- <p>© Copyright 2020 HappyTree API. All rights reserved.Powered by <a href="https://www.madzera.com" target="_blank">MadZera</a></p>
+<footer class="w3-container w3-padding-64 w3-center w3-opacity" onclick="closeModal()">  
+ <p>© 2020-2021 <a href="https://www.madzera.com" target="_blank">MadZera</a>
 </footer>
 
 <script>

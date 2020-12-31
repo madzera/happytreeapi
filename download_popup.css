@@ -26,6 +26,7 @@
 
 /* The Modal (background) */
 .modal {
+  width:520px;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
