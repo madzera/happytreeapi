@@ -207,11 +207,11 @@
             <div class="usage-step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3>Annotate Your Class</h3>
+                    <h3>Annotate Your Class and implement Serializable</h3>
                     <p>Add the required annotations to your Java class:</p>
                     <div class="code-block">
                         <pre><code class="language-java">@Tree
-public class Directory {
+public class Directory implements Serializable {
     @Id
     private Integer directoryId;
     
@@ -364,7 +364,7 @@ System.out.println(root.toXML());</code></pre>
                 <div class="code-block">
                     <pre><code class="language-java">// 1. Define your model
 @Tree
-public class Directory {
+public class Directory implements Serializable {
     @Id
     private Integer directoryId;
     @Parent
