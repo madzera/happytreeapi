@@ -777,7 +777,7 @@ List&lt;Element&lt;Directory&gt;&gt; children = root.search(e ->
                     <div class="code-block">
                         <pre><code class="language-java">// Apply operation to all elements in tree
 manager.apply(element -> {
-    Directory dir = element.unwrap();
+    Directory dir = (Directory) element.unwrap();
     // Add prefix to all directory names
     dir.setDirectoryName("[ARCHIVED] " + dir.getDirectoryName());
     element.wrap(dir);
@@ -786,11 +786,11 @@ manager.apply(element -> {
 // Apply only to elements matching condition
 manager.apply(
     element -> {
-        Directory dir = element.unwrap();
+        Directory dir = (Directory) element.unwrap();
         dir.setDirectoryName(dir.getDirectoryName().toUpperCase());
         element.wrap(dir);
     },
-    element -> element.getChildren().size() == 0 // Only leaf nodes
+    element -> element.getChildren().isEmpty() // Only leaf nodes
 );
 
 // Changes are automatically reflected in the tree
@@ -849,6 +849,7 @@ System.out.println(xml);
 
 // Export formatted XML
 String prettyXml = root.toPrettyXML();
+System.out.println(prettyXml);
 
 // Export specific subtree
 Element&lt;Directory&gt; documents = manager.getElementById(2);
