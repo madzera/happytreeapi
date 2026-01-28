@@ -703,10 +703,10 @@ System.out.println(json);</code></pre>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Reorganize your tree structure by moving elements to different parents.</p>
                     <div class="code-block">
                         <pre><code class="language-java">
-// Move 'Personal' folder under 'Pictures'.
+// Move "Personal" directory under "Pictures".
 Collection&lt;Directory&gt; directories = getDirectories();
 
-// Initialize tree with directories
+// Initialize tree manager and transaction
 TreeManager manager = HappyTree.createTreeManager();
 TreeTransaction transaction = manager.getTransaction();
 transaction.initializeSession("fileSystem", directories);
@@ -760,7 +760,7 @@ System.out.println("New element created: " + security.getDirectoryName());</code
                         <pre><code class="language-java">
 /*
  * Search for directories containing "Doc" and elements with more than
- * 2 children.
+ * two children.
  */
 Collection&lt;Directory&gt; directories = getDirectories();
 
@@ -865,8 +865,9 @@ transaction.sessionCheckout("config");
 Element&lt;Directory&gt; configRoot = manager.root();
 
 /*
- * Copy element "admin" from "myDirectories" to "config" session. To
- * perform the operation, we need to checkout the source session.
+ * Copy the element "admin" from "myDirectories" to "config" session. To
+ * perform the operation, we need to checkout the session of the source
+ * element (admin).
  */
 transaction.sessionCheckout("myDirectories");
 manager.copy(admin, configRoot);
