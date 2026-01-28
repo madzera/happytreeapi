@@ -702,7 +702,11 @@ System.out.println(json);</code></pre>
                     <h4 style="color: var(--primary-color); margin-bottom: 1rem;">1. Moving Elements Between Parents</h4>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Reorganize your tree structure by moving elements to different parents.</p>
                     <div class="code-block">
-                        <pre><code class="language-java">// Initialize tree with directories
+                        <pre><code class="language-java">
+// Move 'Personal' folder under 'Pictures'.
+Collection&lt;Directory&gt; directories = getDirectories();
+
+// Initialize tree with directories
 TreeManager manager = HappyTree.createTreeManager();
 TreeTransaction transaction = manager.getTransaction();
 transaction.initializeSession("fileSystem", directories);
@@ -711,7 +715,7 @@ transaction.initializeSession("fileSystem", directories);
 Element&lt;Directory&gt; personal = manager.getElementById(5);
 Element&lt;Directory&gt; pictures = manager.getElementById(3);
 
-// Move 'Personal' folder under 'Pictures'
+// Move the element
 manager.cut(personal, pictures);
 
 // Verify the move
@@ -725,10 +729,13 @@ System.out.println("Folder moved successfully!");</code></pre>
                     <h4 style="color: var(--primary-color); margin-bottom: 1rem;">2. Creating and Persisting New Elements</h4>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Build trees dynamically by creating new elements from scratch.</p>
                     <div class="code-block">
-                        <pre><code class="language-java">// Create empty tree session
+                        <pre><code class="language-java">
+// Create empty tree session.
+TreeManager manager = HappyTree.createTreeManager();
+TreeTransaction transaction = manager.getTransaction();
 transaction.initializeSession("newTree", Directory.class);
 
-// Create new directory object
+// Create new Directory object named "Security"
 Directory security = new Directory();
 security.setDirectoryId(100);
 security.setDirectoryParentId(null);
@@ -750,7 +757,19 @@ System.out.println("New element created: " + security.getDirectoryName());</code
                     <h4 style="color: var(--primary-color); margin-bottom: 1rem;">3. Searching Elements with Conditions</h4>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Find specific elements using predicates and functional programming.</p>
                     <div class="code-block">
-                        <pre><code class="language-java">// Search for directories containing "Doc"
+                        <pre><code class="language-java">
+/*
+ * Search for directories containing "Doc" and elements with more than
+ * 2 children.
+ */
+Collection&lt;Directory&gt; directories = getDirectories();
+
+// Initialize tree manager and transaction
+TreeManager manager = HappyTree.createTreeManager();
+TreeTransaction transaction = manager.getTransaction();
+transaction.initializeSession("fileSystem", directories);
+
+// Search for directories containing "Doc"
 List&lt;Element&lt;Directory&gt;&gt; results = manager.search(element -> {
     Directory dir = element.unwrap();
     return dir.getDirectoryName().contains("Doc");
@@ -762,20 +781,36 @@ results.forEach(element -> {
     System.out.println("Found: " + dir.getDirectoryName());
 });
 
-// Search within a specific element
+// Search within a specific element containing more than 2 children
 Element&lt;Directory&gt; root = manager.root();
-List&lt;Element&lt;Directory&gt;&gt; children = root.search(e -> 
-    e.getChildren().size() > 2
-);</code></pre>
-                    </div>
-                </div>
+List&lt;Element&lt;Directory&gt;&gt; children = root.search(e -> e.getChildren().size() > 2);
+
+children.forEach(element -> {
+    Directory dir = element.unwrap();
+    System.out.println("Element with more than 2 children: " + dir.getDirectoryName());
+});
+</code></pre>
+		</div>
+    </div>
 
                 <!-- Example 4: Applying Operations to All Elements -->
                 <div style="margin-bottom: 3rem;">
                     <h4 style="color: var(--primary-color); margin-bottom: 1rem;">4. Bulk Operations with Apply</h4>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Apply transformations to multiple elements at once.</p>
                     <div class="code-block">
-                        <pre><code class="language-java">// Apply operation to all elements in tree
+                        <pre><code class="language-java">
+/*
+ * Apply an operation to all elements in the tree and uppercase the
+ * directory names of the leaf elements.
+ */
+Collection&lt;Directory&gt; directories = getDirectories();
+
+// Initialize tree manager and transaction
+TreeManager manager = HappyTree.createTreeManager();
+TreeTransaction transaction = manager.getTransaction();
+transaction.initializeSession("fileSystem", directories);
+
+// Apply operation to all elements in tree
 manager.apply(element -> {
     Directory dir = (Directory) element.unwrap();
     // Add prefix to all directory names
@@ -783,7 +818,12 @@ manager.apply(element -> {
     element.wrap(dir);
 });
 
-// Apply only to elements matching condition
+manager.root().getChildren().forEach(element -> {
+    Directory dir = (Directory) element.unwrap();
+    System.out.println(dir.getDirectoryName());
+});
+
+// Apply only to elements matching condition (leaf elements)
 manager.apply(
     element -> {
         Directory dir = (Directory) element.unwrap();
@@ -793,8 +833,11 @@ manager.apply(
     element -> element.getChildren().isEmpty() // Only leaf nodes
 );
 
-// Changes are automatically reflected in the tree
-System.out.println("Bulk update completed!");</code></pre>
+manager.root().getChildren().forEach(element -> {
+    Directory dir = (Directory) element.unwrap();
+    System.out.println(dir.getDirectoryName());
+});
+</code></pre>
                     </div>
                 </div>
 
@@ -803,9 +846,10 @@ System.out.println("Bulk update completed!");</code></pre>
                     <h4 style="color: var(--primary-color); margin-bottom: 1rem;">5. Working with Multiple Sessions</h4>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Manage multiple independent trees simultaneously.</p>
                     <div class="code-block">
-                        <pre><code class="language-java">TreeManager manager = HappyTree.createTreeManager();
-Collection<Directory> directories = getDirectories();
-Collection<Directory> configDirs = getDirectoriesConfig();
+                        <pre><code class="language-java">
+// Copy an element and clone the tree structure.
+Collection&lt;Directory> directories = getDirectories();
+Collection&lt;Directory> configDirs = getDirectoriesConfig();
 
 TreeManager manager = HappyTree.createTreeManager();
 TreeTransaction transaction = manager.getTransaction();
@@ -816,9 +860,9 @@ transaction.initializeSession("config", configDirs);
 
 // Switch between sessions
 transaction.sessionCheckout("myDirectories");
-Element<Directory> admin = manager.getElementById(1);
+Element&lt;Directory&gt; admin = manager.getElementById(1);
 transaction.sessionCheckout("config");
-Element<Directory> configRoot = manager.root();
+Element&lt;Directory&gt; configRoot = manager.root();
 
 /*
  * Copy element "admin" from "myDirectories" to "config" session. To
@@ -837,7 +881,7 @@ System.out.println("Config root contains admin directory: " +
 transaction.cloneSession("config", "config-backup");
 transaction.sessionCheckout("config-backup");
 
-Element<Directory> backupRoot = manager.root();
+Element&lt;Directory&gt; backupRoot = manager.root();
 
 /*
  * The JSON from the "config-backup" must be identical to the one
@@ -865,7 +909,16 @@ System.out.println("JSONs are identical: " +
                     <h4 style="color: var(--primary-color); margin-bottom: 1rem;">6. Exporting Tree Structures</h4>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Convert your tree to JSON or XML format for serialization.</p>
                     <div class="code-block">
-                        <pre><code class="language-java">// Get root element
+                        <pre><code class="language-java">
+// Print to JSON and XML formats and save to file.
+Collection&lt;Directory&gt; directories = getDirectories();
+
+// Initialize tree manager and transaction
+TreeManager manager = HappyTree.createTreeManager();
+TreeTransaction transaction = manager.getTransaction();
+transaction.initializeSession("fileSystem", directories);
+
+// Get root element
 Element&lt;Directory&gt; root = manager.root();
 
 // Export to minified JSON
@@ -890,7 +943,8 @@ String subtreeJson = documents.toPrettyJSON();
 
 // Save to file
 Files.write(Paths.get("tree-export.json"), 
-    prettyJson.getBytes(StandardCharsets.UTF_8));</code></pre>
+        prettyJson.getBytes(StandardCharsets.UTF_8));
+	</code></pre>
                     </div>
                 </div>
             </div>
