@@ -804,26 +804,59 @@ System.out.println("Bulk update completed!");</code></pre>
                     <p style="color: var(--text-muted); margin-bottom: 1rem;">Manage multiple independent trees simultaneously.</p>
                     <div class="code-block">
                         <pre><code class="language-java">TreeManager manager = HappyTree.createTreeManager();
+Collection<Directory> directories = getDirectories();
+Collection<Directory> configDirs = getDirectoriesConfig();
+
+TreeManager manager = HappyTree.createTreeManager();
 TreeTransaction transaction = manager.getTransaction();
 
 // Initialize multiple sessions
-transaction.initializeSession("personal", personalDirs);
-transaction.initializeSession("work", workDirs);
+transaction.initializeSession("myDirectories", directories);
+transaction.initializeSession("config", configDirs);
 
 // Switch between sessions
-transaction.sessionCheckout("personal");
-Element&lt;Directory&gt; personalRoot = manager.root();
+transaction.sessionCheckout("myDirectories");
+Element<Directory> admin = manager.getElementById(1);
+transaction.sessionCheckout("config");
+Element<Directory> configRoot = manager.root();
 
-transaction.sessionCheckout("work");
-Element&lt;Directory&gt; workRoot = manager.root();
+/*
+ * Copy element "admin" from "myDirectories" to "config" session. To
+ * perform the operation, we need to checkout the source session.
+ */
+transaction.sessionCheckout("myDirectories");
+manager.copy(admin, configRoot);
+System.out.println("Config root contains admin directory: " + 
+        manager.containsElement(configRoot, admin));
+        
+        
+/*
+ * Clone entire session. After cloning, it is necessary to checkout
+ * the target session to work with it.
+ */
+transaction.cloneSession("config", "config-backup");
+transaction.sessionCheckout("config-backup");
 
-// Copy element between sessions
-Element&lt;Directory&gt; project = manager.getElementById(42);
-manager.copy(project, personalRoot);
+Element<Directory> backupRoot = manager.root();
 
-// Clone entire session
-transaction.cloneSession("work", "work-backup");
-System.out.println("Session cloned successfully!");</code></pre>
+/*
+ * The JSON from the "config-backup" must be identical to the one
+ * from the "config" session.
+ */
+System.out.println(System.lineSeparator());
+String jsonBackupRoot = backupRoot.toJSON();
+System.out.println(jsonBackupRoot);
+System.out.println(System.lineSeparator());
+// It is necessary to checkout the "config" session again to refresh the
+// root element.
+transaction.sessionCheckout("config");
+configRoot = manager.root();
+String jsonConfigRoot = configRoot.toJSON();
+System.out.println(jsonConfigRoot);
+System.out.println(System.lineSeparator());
+System.out.println("JSONs are identical: " + 
+        jsonBackupRoot.equals(jsonConfigRoot));
+</code></pre>
                     </div>
                 </div>
 
